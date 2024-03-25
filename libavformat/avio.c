@@ -314,8 +314,17 @@ int ffurl_open_whitelist(URLContext **puc, const char *filename, int flags,
     int ret = ffurl_alloc(puc, filename, flags, int_cb);
     if (ret < 0)
         return ret;
-    if (parent)
+    if (parent) {
         av_opt_copy(*puc, parent);
+        (*puc)->cache_dns = parent->cache_dns;
+        parent->cache_dns = 0;
+    }
+        
+
+    if (av_strstart(filename, "http", NULL)) {
+        (*puc)->cache_dns = 1;
+    }
+
     if (options &&
         (ret = av_opt_set_dict(*puc, options)) < 0)
         goto fail;
