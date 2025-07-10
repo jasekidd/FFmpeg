@@ -1,0 +1,15 @@
+static const URLProtocol * const url_protocols[] = {
+    &ff_async_protocol,
+    &ff_ffrtmphttp_protocol,
+    &ff_file_protocol,
+    &ff_ftp_protocol,
+    &ff_hls_protocol,
+    &ff_http_protocol,
+    &ff_https_protocol,
+    &ff_ijksegment_protocol,
+    &ff_ijkio_protocol,
+    &ff_pipe_protocol,
+    &ff_rtmp_protocol,
+    &ff_tcp_protocol,
+    &ff_tls_openssl_protocol,
+    NULL };
